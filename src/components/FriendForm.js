@@ -79,7 +79,7 @@ export default function FriendForm(props) {
           <input
             type="radio"
             name="civil"
-            value="civil"
+            value="single"
             checked={values.civil === "single"}
             // onChange={onChange}
           />
