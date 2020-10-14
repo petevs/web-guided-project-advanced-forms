@@ -49,7 +49,15 @@ export default function App() {
   const getFriends = () => {
     // 🔥 STEP 5- IMPLEMENT! ON SUCCESS PUT FRIENDS IN STATE
     //    helper to [GET] all friends from `http://localhost:4000/friends`
-    
+    axios
+      .get(`http://localhost:4000/friends`)
+      .then((res) => {
+        setFriends(res.data);
+      })
+      .catch((err) => {
+        debugger;
+        alert(`Got an error there bud.`);
+      });
   };
 
   const postNewFriend = (newFriend) => {
