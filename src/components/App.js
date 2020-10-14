@@ -93,7 +93,7 @@ export default function App() {
       role: formValues.role.trim(),
       civil: formValues.civil.trim(),
       // 🔥 STEP 7- WHAT ABOUT HOBBIES?
-      hobbies: 
+      hobbies: ['coding', 'reading', 'hiking'].filter
     };
     // 🔥 STEP 8- POST NEW FRIEND USING HELPER
   };
