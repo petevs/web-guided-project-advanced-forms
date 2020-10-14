@@ -85,7 +85,9 @@ export default function FriendForm(props) {
           />
         </label>
 
-        <label>Married</label>
+        <label>Married
+          
+        </label>
       </div>
 
       <div className="form-group checkboxes">
