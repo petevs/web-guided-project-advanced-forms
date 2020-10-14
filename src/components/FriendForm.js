@@ -12,7 +12,7 @@ export default function FriendForm(props) {
     /* 🔥 FIX THIS SO IT ALSO WORKS WITH CHECKBOXES */
     debugger;
     const { name, value, type, checked } = evt.target;
-    const 
+    const valueToUse = type === 'checkbox' ? checkbox : value;
     change(name, value);
   };
 
