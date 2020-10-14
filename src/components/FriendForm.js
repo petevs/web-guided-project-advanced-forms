@@ -10,8 +10,11 @@ export default function FriendForm(props) {
 
   const onChange = (evt) => {
     /* 🔥 FIX THIS SO IT ALSO WORKS WITH CHECKBOXES */
-    debugger;
-    
+    const onChange = (evt) => {
+      const { name, value, type, checked } = evt.target;
+      const valueToUse = type === "checkbox" ? checked : value;
+      change(name, valueToUse);
+    };
   };
 
   return (
