@@ -113,9 +113,15 @@ export default function FriendForm(props) {
             onChange={onChange}
           />
         </label>
-        <label>Reading</label>
+        <label>Reading
 
-        <label>Coding</label>
+
+        </label>
+
+        <label>Coding
+
+          
+        </label>
       </div>
     </form>
   );
