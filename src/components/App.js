@@ -81,7 +81,30 @@ export default function App() {
   const inputChange = (name, value) => {
     // 🔥 STEP 10- RUN VALIDATION WITH YUP
 
-    
+    // yup.reach will allow us to "reach" into the schema and test only one part.
+    // We give reach the schema as the first argument, and the key we want to test as the second.
+
+    yup
+      .reach(schema, name) // get to this part of the schema
+      //we can then run validate using the value
+      .validate(value) // validate this value
+      .then(() => {
+        // happy path and clear the error
+        setFormErrors({
+          ...formErrors,
+          [name]: "",
+        });
+      })
+      // if the validation is unsuccessful, we can set the error message to the message
+      // returned from yup (that we created in our schema)
+      .catch((err) => {
+        setFormErrors({
+          ...formErrors,
+          // validation error from schema
+          [name]: err.errors[0],
+        });
+      });
+
     setFormValues({
       ...formValues,
       [name]: value, // NOT AN ARRAY
