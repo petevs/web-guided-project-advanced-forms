@@ -4,9 +4,11 @@ import * as yup from "yup";
 export default yup.object().shape({
   username: yup
     .string()
-    .required("username is required".min(3, "username must be 3 character")),
+    .required("username is required".min(3, "username must be 3 character"),
   email: yup
-  .string(),
+  .string()
+  .email()
+  .required('must be a valid email address'),
   role: yup.string(),
   civil: yup.string(),
   coding: yup.boolean(),
