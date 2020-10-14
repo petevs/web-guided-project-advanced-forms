@@ -98,6 +98,7 @@ export default function App() {
       ),
     };
     // 🔥 STEP 8- POST NEW FRIEND USING HELPER
+    postNewFriend(newFriend);
   };
 
   //////////////// SIDE EFFECTS ////////////////
