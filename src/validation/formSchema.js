@@ -2,8 +2,14 @@
 import * as yup from "yup";
 
 export default yup.object().shape({
-    
-})
+  username: yup.string(),
+  email: yup.string(),
+  role: yup.string(),
+  civil: yup.string(),
+  coding: yup.boolean(),
+  reading: yup.boolean(),
+  hiking: yup.boolean(),
+});
 
 const formSchema = Yup.object().shape({
   email: Yup.string()
