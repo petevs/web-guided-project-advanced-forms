@@ -2,7 +2,7 @@
 import * as yup from "yup";
 
 export default yup.object().shape({
-  username: yup.string(),
+  username: yup.string().required('username is required'),
   email: yup.string(),
   role: yup.string(),
   civil: yup.string(),
