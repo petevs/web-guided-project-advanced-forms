@@ -1,17 +1,22 @@
 import React, { useState, useEffect } from 'react'
 import Friend from './Friend'
 import FriendForm from './FriendForm'
+
 // 🔥 STEP 1- CHECK THE ENDPOINTS USING POSTMAN OR HTTPIE
 // 🔥 STEP 2- FLESH OUT FriendForm.js
 // 🔥 STEP 3- FLESH THE SCHEMA IN ITS OWN FILE
+import * as yup from 'yup'
+import schema from '../validation/formSchema'
 // 🔥 STEP 4- IMPORT THE SCHEMA, AXIOS AND YUP
-
+import axios from 'axios'
 
 //////////////// INITIAL STATES ////////////////
 //////////////// INITIAL STATES ////////////////
 //////////////// INITIAL STATES ////////////////
 const initialFormValues = {
   ///// TEXT INPUTS /////
+  fullname: '',
+  age: '',
   username: '',
   email: '',
   ///// DROPDOWN /////
@@ -54,6 +59,9 @@ export default function App() {
     // 🔥 STEP 6- IMPLEMENT! ON SUCCESS ADD NEWLY CREATED FRIEND TO STATE
     //    helper to [POST] `newFriend` to `http://localhost:4000/friends`
     //    and regardless of success or failure, the form should reset
+    axios.post('http://localhost:4000/friends', newFriend)
+    .then(()=> console.log('form submitted successfully'))
+    .catch(()=>console.log(err))
   }
 
   //////////////// EVENT HANDLERS ////////////////
@@ -61,6 +69,20 @@ export default function App() {
   //////////////// EVENT HANDLERS ////////////////
   const inputChange = (name, value) => {
     // 🔥 STEP 10- RUN VALIDATION WITH YUP
+    yup.reach(schema, name)
+    .validate(value)
+    .then(() => {
+      setFormError({
+        ...formErrors,
+        [name]: ''
+      })
+    })
+    .catch(err => {
+      setFormError({
+        ...formErrors,
+        [name]: err
+      })
+    })
     setFormValues({
       ...formValues,
       [name]: value // NOT AN ARRAY
@@ -69,18 +91,28 @@ export default function App() {
 
   const formSubmit = () => {
     const newFriend = {
+      fullname: formValues.fullname.trim(),
+      age: formValues.age.trim(),
       username: formValues.username.trim(),
       email: formValues.email.trim(),
       role: formValues.role.trim(),
       civil: formValues.civil.trim(),
+      hiking: formValues.civil,
+      coding: formValues.coding,
+      reading: formValues.reading
       // 🔥 STEP 7- WHAT ABOUT HOBBIES?
     }
     // 🔥 STEP 8- POST NEW FRIEND USING HELPER
+    postNewFriend(newFriend)
   }
 
   //////////////// SIDE EFFECTS ////////////////
   //////////////// SIDE EFFECTS ////////////////
   //////////////// SIDE EFFECTS ////////////////
+ useEffect(() => {
+   console.log(formValues)
+ }, [formValues])
+ 
   useEffect(() => {
     getFriends()
   }, [])

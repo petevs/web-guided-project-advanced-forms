@@ -16,8 +16,9 @@ export default function FriendForm(props) {
 
   const onChange = evt => {
     /* 🔥 FIX THIS SO IT ALSO WORKS WITH CHECKBOXES */
-    const { name, value } = evt.target
-    change(name, value)
+    const { name, value, checked, type } = evt.target
+    const val = type === 'checkbox' ? checked : value;
+    change(name, val)
   }
 
   return (
@@ -43,6 +44,10 @@ export default function FriendForm(props) {
         {/* ////////// TEXT INPUTS ////////// */}
         {/* ////////// TEXT INPUTS ////////// */}
         {/* ////////// TEXT INPUTS ////////// */}
+
+        <label>Full Name
+        <input type='text' name='fullname' onChange={onChange} value={values.fullname} />
+        </label>
         <label>Username&nbsp;
           <input
             value={values.username}
@@ -50,6 +55,10 @@ export default function FriendForm(props) {
             name='username'
             type='text'
           />
+        </label>
+
+        <label>Age
+          <input type='text' name='age' onChange={onChange} value={values.age} />
         </label>
 
         <label>Email
@@ -82,10 +91,12 @@ export default function FriendForm(props) {
         {/* ////////// RADIO BUTTONS ////////// */}
         {/* ////////// RADIO BUTTONS ////////// */}
         <label>Single
+          <input type='radio' name='civil' value='single' onChange={onChange} checked={values.civil === 'single'} />
 
         </label>
 
         <label>Married
+        <input type='radio' name='civil' value='married' onChange={onChange} checked={values.civil === 'married'} />
 
         </label>
       </div>
@@ -97,14 +108,17 @@ export default function FriendForm(props) {
         {/* ////////// CHECKBOXES ////////// */}
         {/* ////////// CHECKBOXES ////////// */}
         <label>Hiking
+          <input type='checkbox' onChange={onChange} name="hiking" />
 
         </label>
 
         <label>Reading
+        <input type='checkbox' onChange={onChange} name="reading" />
 
         </label>
 
         <label>Coding
+        <input type='checkbox' onChange={onChange} name="coding" />
 
         </label>
       </div>
